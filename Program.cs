@@ -11,21 +11,20 @@ namespace EjemploCadenaResponsabilidad
     {
         static void Main(string[] args)
         {
-
-            var coordinador = new Coordinador();
-            var gerente = new Gerente();
-            var subdirector = new Subdirector();
-            var director = new Director();
+            // Configuración de cadena de responsabilidad
+            IAutorizador coordinador = new Coordinador();
+            IAutorizador gerente = new Gerente();
+            IAutorizador subdirector = new Subdirector();
+            IAutorizador director = new Director();
 
             coordinador
                 .SiguientePosibleAutorizador(gerente)
                 .SiguientePosibleAutorizador(subdirector)
                 .SiguientePosibleAutorizador(director);
 
-
-            string s = Console.ReadLine();
             decimal v;
             Console.WriteLine("Ingresar monto:");
+            string s = Console.ReadLine();
             if (decimal.TryParse(s, out v))
             {
                 string r = coordinador.DecidirAprobacion(v);
